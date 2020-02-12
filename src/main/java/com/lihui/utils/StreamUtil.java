@@ -92,9 +92,5 @@ public class StreamUtil {
 		return stringBuffer.toString();
 	}
 	
-	public static void main(String[] args) {
-		File file=new File("E:\\pic\\aaa.txt");
-		System.out.println(readFile(file));
-	}
 	
 }

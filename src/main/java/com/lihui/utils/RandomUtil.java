@@ -190,10 +190,5 @@ public class RandomUtil {
 				
 		}
 	
-	public static void main(String[] args) {
-		
-		System.out.println("返回年龄1-120之间的数："+getRandomNum(120,1));
-		System.out.println("返回4位验证码，可包含数字英文："+getRandomNumberAndEnglishString(4));
-		System.out.println("返回一段文章500字："+getRandomChineseString(500));
-	}
+	
 }

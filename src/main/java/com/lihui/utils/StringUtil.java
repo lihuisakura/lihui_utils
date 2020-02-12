@@ -71,10 +71,5 @@ public class StringUtil {
 		return string.matches(zz);
 	}
 	
-	public static void main(String[] args) {
-		System.out.println("判断字符串是否为空："+isNull(""));
-		System.out.println("判断字符串是否不为空："+isNotNull(""));
-		System.out.println("判断是否为手机号："+isPhone("13709900000"));
-		System.out.println("判断是否为邮箱："+isEmail("1370@qq.com"));
-	}
+	
 }
