@@ -1,12 +1,16 @@
 package com.lihui.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +24,7 @@ public class StreamUtil {
 	 * @return: void
 	 */
 	public static void closeStream(AutoCloseable ...autoCloseables ) {
-		if(null!=autoCloseables) {
+		if(autoCloseables!=null) {
 			for (AutoCloseable autoCloseable : autoCloseables) {
 				try {
 					autoCloseable.close();
@@ -78,10 +82,10 @@ public class StreamUtil {
 		try {
 			ips=new FileInputStream(file);
 			byte[] b=new byte[1024];
-			int read = ips.read(b);
-			while(read!=-1) {
+			int reads ;
+			while((reads= ips.read(b))!=-1) {
 				stringBuffer.append(new String(b));
-				read=ips.read();
+				reads=ips.read();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -92,5 +96,32 @@ public class StreamUtil {
 		return stringBuffer.toString();
 	}
 	
+	public static String readTextFile(String fileName) {
+		return readFile(new File(fileName));
+	}
+	
+	public static void writeTextFile(String content,File file) {
+			//e:/aa/bb/aa.txt
+		String parent = file.getParent();//e:/aa/bb
+		//父目录   文件夹
+		File parentFile=new File(parent);
+		if(!parentFile.exists()) {
+			parentFile.mkdirs();
+		}
+		//写到文件
+		Writer fw = null;
+		BufferedWriter bw=null;
+		try {
+			fw = new FileWriter(file);
+			 bw=new BufferedWriter(fw);
+			 bw.write(content);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeStream(bw,fw);
+		}
+		
+	}
 	
 }

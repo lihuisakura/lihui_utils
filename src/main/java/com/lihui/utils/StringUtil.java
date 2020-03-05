@@ -70,6 +70,18 @@ public class StringUtil {
 		String zz="^1[3-9]\\d{9}$";
 		return string.matches(zz);
 	}
+	/**
+	 * 
+	 * @Title: isHttpUrl 
+	 * @Description: 实现判断传入的字符串是否包含http的url地址
+	 * @param src
+	 * @return
+	 * @return: boolean
+	 */
+	public static boolean isHttpUrl(String src) {
+		String zz="^http:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w-.\\/?%&=]*)?$";
+		return src.matches(zz);
+	}
 	
 	
 }

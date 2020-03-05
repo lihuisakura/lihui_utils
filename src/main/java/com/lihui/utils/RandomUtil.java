@@ -1,6 +1,8 @@
 package com.lihui.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -190,5 +192,74 @@ public class RandomUtil {
 				
 		}
 	
+		/**
+		 * 
+		 * @Title: getRandomSex 
+		 * @Description: 获取随机性别
+		 * @return
+		 * @return: String
+		 */
+		public static String getRandomSex() {
+			int randomNum = getRandomNum(1, 0);
+			if(randomNum==0) {
+				return "男";
+			}else {
+				return "女";
+			}
+			
+		}
+		/**
+		 * 
+		 * @Title: getRandomPhone 
+		 * @Description: 获取一个随机电话号码
+		 * @return
+		 * @return: String
+		 */
+		public static String getRandomPhone() {
+			int startPhone = getRandomNum(9, 3);
+			int endPhone = RandomUtil.getRandomNum(1000000000, 100000000);
+			return "1"+startPhone+endPhone;
+		}
+		
+		private static final String[] email_suffix = "@gmail.com,@yahoo.com,@msn.com,@hotmail.com,@aol.com,@ask.com,@live.com,@qq.com,@0355.net,@163.com,@163.net,@263.net,@3721.net,@yeah.net,@googlemail.com,@126.com,@sina.com,@sohu.com,@yahoo.com.cn".split(",");
+	    public static String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+	
+		
+		/**
+		 * 
+		 * @Title: getRandomEmail 
+		 * @Description: 获取一个随机邮箱
+		 * @return
+		 * @return: String
+		 */
+		public static String getRandomEmail(int max,int min) {
+	        int length = getRandomNum(max, min);
+	        StringBuffer sb = new StringBuffer();
+	        for (int i = 0; i < length; i++) {
+	            int number = (int) (Math.random() * base.length());
+	            sb.append(base.charAt(number));
+	        }
+	        sb.append(email_suffix[(int) (Math.random() * email_suffix.length)]);
+	        return sb.toString();
+		}
+		/**
+		 * 
+		 * @Title: getRandomDate 
+		 * @Description: 获取随机生日
+		 * @return
+		 * @return: Date
+		 */
+		public static Date getRandomDate(int max,int min) {
+			Calendar calendar=Calendar.getInstance();
+			long time = calendar.getTime().getTime();
+			long longTime=(1000*60*60*24);
+			int randomNum = getRandomNum(max, min);
+			long time2=getRandomNum(365, 0)*longTime*randomNum;
+			calendar.setTimeInMillis(time-time2);
+			return calendar.getTime();
+		}
+		
+		
+		
 	
 }
